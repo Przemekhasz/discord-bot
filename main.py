@@ -4,7 +4,7 @@ import aiohttp
 from discord.voice_client import VoiceClient
 
 # ! before push remove token
-TOKEN = 'your token'
+TOKEN = ''
 
 client = discord.Client()
 client = commands.Bot(command_prefix='?')
@@ -64,6 +64,18 @@ class ManageUser:
             await ctx.send(embed=embedVar)
             return
 
+    @client.command()
+    @commands.has_permissions(kick_members=True)
+    async def warn(ctx, member: discord.Member, *, arg, reason=None):
+        user = member.mention
+        embed = discord.Embed(title="Ostrzeżenie: ", color=0xf40000)
+        embed.add_field(name="Ostrzeżenie: ", value=f'Powód: {arg}', inline=False)
+        embed.add_field(name="Ostrzeżenie użytkownika: ", value=f'{member.mention}', inline=False)
+        embed.add_field(name="Ostrzegany przez: ", value=f'{ctx.author}', inline=False)
+        
+        await member.send(f'Zostałes ostrzeżony za: **{arg}**!')
+        message = await ctx.send(embed=embed)
+
 class Animals:
     @client.command()
     async def dog(ctx):
@@ -81,84 +93,84 @@ class Animals:
     async def cat(ctx):
         async with aiohttp.ClientSession() as session:
             request = await session.get('https://some-random-api.ml/img/cat')
-            dogjson = await request.json() 
+            catjson = await request.json() 
         embed = discord.Embed(
             title="Kot!", 
             color=discord.Color.green()
         )
-        embed.set_image(url=dogjson['link'])
+        embed.set_image(url=catjson['link'])
         await ctx.send(embed=embed)
 
     @client.command()
     async def fox(ctx):
         async with aiohttp.ClientSession() as session:
             request = await session.get('https://some-random-api.ml/img/fox')
-            dogjson = await request.json() 
+            foxjson = await request.json() 
         embed = discord.Embed(
             title="Lis!", 
             color=discord.Color.green()
         )
-        embed.set_image(url=dogjson['link'])
+        embed.set_image(url=foxjson['link'])
         await ctx.send(embed=embed)
 
     @client.command()
     async def panda(ctx):
         async with aiohttp.ClientSession() as session:
             request = await session.get('https://some-random-api.ml/animal/panda')
-            dogjson = await request.json() 
+            pandajson = await request.json() 
         embed = discord.Embed(
             title="Panda!", 
             color=discord.Color.green()
         )
-        embed.set_image(url=dogjson['image'])
+        embed.set_image(url=pandajson['image'])
         await ctx.send(embed=embed)
 
     @client.command()
     async def koala(ctx):
         async with aiohttp.ClientSession() as session:
             request = await session.get('https://some-random-api.ml/animal/koala')
-            dogjson = await request.json() 
+            koalajson = await request.json() 
         embed = discord.Embed(
             title="Koala!", 
             color=discord.Color.green()
         )
-        embed.set_image(url=dogjson['image'])
+        embed.set_image(url=koalajson['image'])
         await ctx.send(embed=embed)
 
     @client.command()
-    async def ptak(ctx):
+    async def bird(ctx):
         async with aiohttp.ClientSession() as session:
             request = await session.get('https://some-random-api.ml/animal/birb')
-            dogjson = await request.json() 
+            birdjson = await request.json() 
         embed = discord.Embed(
-            title="Ptak!", 
+            title="Bird!", 
             color=discord.Color.green()
         )
-        embed.set_image(url=dogjson['image'])
+        embed.set_image(url=birdjson['image'])
         await ctx.send(embed=embed)
 
     @client.command()
-    async def szop(ctx):
+    async def raccoon(ctx):
         async with aiohttp.ClientSession() as session:
             request = await session.get('https://some-random-api.ml/animal/raccoon')
-            dogjson = await request.json() 
+            raccoonjson = await request.json() 
         embed = discord.Embed(
-            title="Szop pracz!", 
+            title="Raccoon!", 
             color=discord.Color.green()
         )
-        embed.set_image(url=dogjson['image'])
+        embed.set_image(url=raccoonjson['image'])
         await ctx.send(embed=embed)
 
     @client.command()
-    async def kangur(ctx):
+    async def kangaroo(ctx):
         async with aiohttp.ClientSession() as session:
             request = await session.get('https://some-random-api.ml/animal/kangaroo')
-            dogjson = await request.json() 
+            kangaroojson = await request.json() 
         embed = discord.Embed(
-            title="Kangur!", 
+            title="kangaroo!", 
             color=discord.Color.green()
         )
-        embed.set_image(url=dogjson['image'])
+        embed.set_image(url=kangaroojson['image'])
         await ctx.send(embed=embed)
 
 @client.command()
@@ -180,17 +192,17 @@ async def helpme(ctx):
         inline=True
     )
     embed.add_field(
-        name="?kangur:", 
+        name="?kangaroo:", 
         value="Zwraca losowego kangura", 
         inline=True
     )
     embed.add_field(
-        name="?szop:", 
+        name="?raccoon:", 
         value="Zwraca losowego szopa", 
         inline=True
     )
     embed.add_field(
-        name="?ptak:", 
+        name="?bird:", 
         value="Zwraca losowego ptaka", 
         inline=True
     )
@@ -222,6 +234,11 @@ async def helpme(ctx):
     embed.add_field(
         name="?unban:", 
         value="?unban ***nazwa#12345***", 
+        inline=True
+    )
+    embed.add_field(
+        name="?warn:", 
+        value="?warn ***@nazwa312345*** powód", 
         inline=True
     )
     await ctx.send(embed=embed) 
