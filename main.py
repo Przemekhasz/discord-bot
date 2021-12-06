@@ -2,9 +2,10 @@ import discord
 from discord.ext import commands
 import aiohttp
 from discord.voice_client import VoiceClient
+import os
 
 # ! before push remove token
-TOKEN = ''
+TOKEN  =  os.getenv("DISCORD_TOKEN")
 
 client = discord.Client()
 client = commands.Bot(command_prefix='?')
