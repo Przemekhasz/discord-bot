@@ -4,7 +4,7 @@ import aiohttp
 from discord.voice_client import VoiceClient
 
 # ! before push remove token
-TOKEN = ''
+TOKEN = 'ODE5MTQyMDg4NjU4MjU1OTQy.YEiThA.U2MRoxolBNyw8JgZWH4NW3lIxRg'
 
 client = discord.Client()
 client = commands.Bot(command_prefix='?')
