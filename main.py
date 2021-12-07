@@ -3,7 +3,9 @@ from discord.ext import commands
 import aiohttp
 from discord.voice_client import VoiceClient
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 client = discord.Client()
