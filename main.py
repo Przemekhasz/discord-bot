@@ -176,6 +176,10 @@ class Animals:
         await ctx.send(embed=embed)
 
 @client.command()
+async def wassup(ctx):
+    await ctx.send(file=discord.File(r'./sounds/wassup.mp3'))
+
+@client.command()
 async def helpme(ctx):
     embed = discord.Embed(
         title="Komendy!", 
@@ -219,6 +223,11 @@ async def helpme(ctx):
         inline=True
     )
     embed.add_field(
+        name="?wassup:", 
+        value="Wysyła dźwięk z serialu the office wassup!", 
+        inline=True
+    )
+    embed.add_field(
         name="Komendy:", 
         value="ADMINI", 
         inline=False
@@ -246,44 +255,5 @@ async def helpme(ctx):
     await ctx.send(embed=embed) 
 
 # Add clear command
-
-# Fucking MusicPlayer is not working
-class MusicPlayer():
-    players = {}
-
-    def __init__(self, players) -> None:
-        self.players = players
-
-    @client.command()
-    async def join(ctx):
-        channel = ctx.message.author.voice.channel
-        await channel.connect()
-        if ctx.voice_client is not None:
-            return await ctx.voice_client.move_to(channel)
-        await channel.connect()
-        
-    @client.command(pass_context=True)
-    async def leave(ctx):
-        server = ctx.message.server
-        voice_client = client.voice_client_in(server)
-        await voice_client.disconnect()
-
-    @client.command(pass_context=True)
-    async def play(self, ctx, url):
-        server = ctx.message.server
-        voice_client = client.voice_client_in(server)
-        player = await voice_client.create_ytdl_player(url)
-        self.players[server.id] = player
-        player.start()
-
-    @client.command(pass_context=True)
-    async def stop(self, ctx):
-        id = ctx.message.server.id
-        self.players[id].stop()
-
-    @client.command(pass_context=True)
-    async def resume(self, ctx):
-        id = ctx.message.server.id
-        self.players[id].resume()
 
 client.run(TOKEN)
