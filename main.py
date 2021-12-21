@@ -3,8 +3,8 @@ from discord.ext import commands
 import aiohttp
 from discord.voice_client import VoiceClient
 import os
-from dotenv import load_dotenv
 import random
+from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -253,8 +253,12 @@ async def helpme(ctx):
         value="?warn ***@nazwa312345*** powód", 
         inline=True
     )
+    embed.add_field(
+        name="?rand:", 
+        value="Zwraca randomowy cytat", 
+        inline=True
+    )
     await ctx.send(embed=embed) 
-
 
 @client.command()
 async def rand(ctx):
