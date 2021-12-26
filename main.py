@@ -4,8 +4,10 @@ import aiohttp
 from discord.voice_client import VoiceClient
 import os
 import random
+from dotenv import load_dotenv
 
-TOKEN = "ODE5MTQyMDg4NjU4MjU1OTQy.YEiThA.40yoPXHkOMxGFqYAj514TYhdgOI"
+load_dotenv()
+TOKEN = os.getenv("DISCORD_TOKEN")
 
 client = discord.Client()
 client = commands.Bot(command_prefix='?', case_insensitive=True)
