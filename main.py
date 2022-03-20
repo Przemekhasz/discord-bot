@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 # token from .env file
 load_dotenv()
-TOKEN = os.getenv("TOKEN")
+TOKEN = os.getenv("DISCORD_TOKEN")
 
 client = discord.Client()
 client = commands.Bot(command_prefix='?', case_insensitive=True)
