@@ -4,7 +4,7 @@ import aiohttp
 from discord.voice_client import VoiceClient
 import os
 import random
-from dotenv import load_dotenv
+import json
 
 # token from .env file
 load_dotenv()
@@ -24,7 +24,7 @@ class ManageUser:
         await user.kick(reason=reason)
         embedVar = discord.Embed(
             title="Kick", 
-            description=f"***{user}*** wyrzucony", 
+            description=f"***{user}*** wyrzucono", 
             color=0xe35f00
         )
         embedVar.add_field(
@@ -182,6 +182,16 @@ async def wassup(ctx):
     await ctx.send(file=discord.File(r'./sounds/wassup.mp3'))
 
 @client.command()
+async def avatar(ctx, *,  avamember : discord.Member=None):
+    userAvatarUrl = avamember.avatar_url
+    embed = discord.Embed(
+        title=str(avamember), 
+        color=discord.Color.green()
+    )
+    embed.set_image(url=userAvatarUrl)
+    await ctx.send(embed=embed)
+
+@client.command()
 async def helpme(ctx):
     embed = discord.Embed(
         title="Komendy!", 
@@ -227,6 +237,11 @@ async def helpme(ctx):
     embed.add_field(
         name="?wassup:", 
         value="Wysyła dźwięk z serialu the office wassup!", 
+        inline=True
+    )
+    embed.add_field(
+        name="?avatar:", 
+        value="?avatar ***@nazwa***", 
         inline=True
     )
     embed.add_field(
