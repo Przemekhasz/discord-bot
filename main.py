@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 
 # token from .env file
 load_dotenv()
-
 TOKEN = os.getenv("TOKEN")
 
 client = discord.Client()
