@@ -5,6 +5,7 @@ from discord.voice_client import VoiceClient
 import os
 import random
 import json
+from dotenv import load_dotenv
 
 # token from .env file
 load_dotenv()
