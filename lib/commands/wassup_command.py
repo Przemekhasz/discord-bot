@@ -10,7 +10,7 @@ class MyCog(commands.Cog):
 
     @commands.command()
     async def wassup(self, ctx):
-        await ctx.send(file=discord.File(r'../../sounds/wassup.mp3'))
+        await ctx.send(file=discord.File(r'./sounds/wassup.mp3'))
 
 def setup(bot):
     bot.add_cog(MyCog(bot))
