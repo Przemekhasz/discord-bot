@@ -1,9 +1,11 @@
 import discord
 from discord.ext import commands
-import json
-import os
 import aiohttp
-import random 
+from discord.voice_client import VoiceClient
+import os
+import random
+import json
+
 class MyCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
