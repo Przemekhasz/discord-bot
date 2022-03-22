@@ -62,6 +62,11 @@ class MyCog(commands.Cog):
             inline=True
         )
         embed.add_field(
+            name="?mem:", 
+            value="Zwraca losowy mem", 
+            inline=True
+        )
+        embed.add_field(
             name="Komendy:", 
             value="ADMINI", 
             inline=False

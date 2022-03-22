@@ -24,6 +24,7 @@ client.load_extension(base_path + "avatar_command")
 client.load_extension(base_path + 'helpme_command')
 client.load_extension(base_path + 'wassup_command')
 client.load_extension(base_path + 'rand_command')
+client.load_extension(base_path + 'mem_command')
 
 # admin commands
 admin_path = base_path + 'admin.'
